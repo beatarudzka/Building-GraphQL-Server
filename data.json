@@ -1,0 +1,36 @@
+{
+  "articles": [
+    {
+      "id": "1",
+      "title": "title1",
+      "tags": "#tag",
+      "description": "description1",
+      "photos": "Illustration_Lotus_corniculatus0.jpg",
+      "date": "2020-01-15T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "title2",
+      "tags": "#tag2",
+      "description": "description2",
+      "photos": "Illustration_Lotus_corniculatus2.jpg",
+      "date": "2020-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "title": "title3",
+      "tags": "#tag3",
+      "description": "description3",
+      "photos": "Illustration_Lotus_corniculatus3.jpg",
+      "date": "2020-03-15T00:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "title": "title4",
+      "tags": "#tag4",
+      "description": "description4",
+      "photos": "Illustration_Lotus_corniculatus3.jpg",
+      "date": "2020-03-15T00:00:00.000Z"
+    }
+  ]
+}

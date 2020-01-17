@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -9,18 +11,6 @@ const {
 
 //Hardcoded Data
 
-const articles = [
-  {
-    id: "1", title: 'title1', tags: '#tag', description: 'description1', photos: 'Illustration_Lotus_corniculatus0.jpg', date: '"2020-01-15T00:00:00.000Z"'
-  },
-  {
-    id: "2", title: 'title2', tags: '#tag2', description: 'description2', photos: 'Illustration_Lotus_corniculatus2.jpg', date: '"2020-02-15T00:00:00.000Z"'
-  },
-  {
-    id: "3", title: 'title3', tags: '#tag3', description: 'description3', photos: 'Illustration_Lotus_corniculatus3.jpg', date: '"2020-03-15T00:00:00.000Z"'
-  }
-
-]
 
 // Article Type
 const ArticleType = new GraphQLObjectType({
@@ -31,7 +21,7 @@ const ArticleType = new GraphQLObjectType({
     tags: { type: GraphQLString },
     description: { type: GraphQLString },
     photos: { type: GraphQLString },
-    date: { type: GraphQLInt }
+    date: { type: GraphQLString }
   })
 })
 
@@ -45,22 +35,27 @@ const RootQuery = new GraphQLObjectType({
         id: { type: GraphQLString }
       },
       resolve(parentValue, args) {
-        for (let i = 0; i < articles.length; i++) {
-          if (articles[i].id == args.id) {
-            return articles[i]
-          }
+        /*
+        for(let i = 0;i < articles.length;i++){
+            if(articles[i].id == args.id){
+                return articles[i];
+            }
         }
+        */
+        return axios.get('http://localhost:3000/articles/' + args.id)
+          .then(res => res.data);
+
       }
-    }
-  },
-  articles: {
-    type: new GraphQLList(ArticleType),
-    resolve(parentValue, args) {
-      return articles
+    },
+    articles: {
+      type: new GraphQLList(ArticleType),
+      resolve(parentValue, args) {
+        return axios.get('http://localhost:3000/articles')
+          .then(res => res.data);
+      }
     }
   }
 })
-
 
 module.exports = new GraphQLSchema({
   query: RootQuery
